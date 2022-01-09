@@ -1,25 +1,17 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = (env, argv) => {
-  const isProduction = argv.mod === 'production';
+  const isProduction = argv.mode === 'production';
   const config = {
     entry: './src/index.js',
     output: {
       filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist'),
     },
     module: {
       rules: [
         {
-          test: /.js$/,
-          use: ['babel-loader'],
-        },
-        {
-          test: /.s?css$/,
+          test: /\.s?css$/i,
           use: [
             isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
             'css-loader',
@@ -27,14 +19,13 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /.(jpg|png$)/,
+          test: /\.(png|jpg|gif)$/i,
           use: [
             {
               loader: 'url-loader',
               options: {
-                limit: 8192,
-                name: '[name].[ext]',
                 outputPath: 'images',
+                limit: 8192,
               },
             },
           ],
@@ -42,13 +33,12 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
-      new webpack.ProgressPlugin(),
-      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: './src/index.html',
       }),
     ],
     devServer: {
+      port: 9000,
       hot: true,
     },
   };
