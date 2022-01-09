@@ -10,5 +10,3 @@ export const onListClick = (e) => {
     onDeleteTask(e);
   }
 };
-
-console.log(2);
