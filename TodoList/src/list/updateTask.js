@@ -1,15 +1,15 @@
-import { renderTasks } from './renderer.js';
-import { updateTask, getTasksList } from './tasksGateway.js';
+import { renderTasks } from './renderer';
+import { getTasksList, updateTask } from './tasksGateway';
 
-export const onToggleTask = e => {
+export const onToggleTask = (e) => {
   const done = e.target.checked;
   const taskId = e.target.dataset.id;
 
   let updateTaskItem;
 
   getTasksList()
-    .then(tasksList => {
-      const { text, createDate } = tasksList.find(task => task.id === taskId);
+    .then((tasksList) => {
+      const { text, createDate } = tasksList.find((task) => task.id === taskId);
 
       updateTaskItem = {
         text,

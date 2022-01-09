@@ -1,5 +1,5 @@
-import { renderTasks } from './renderer.js';
-import { createTask } from './tasksGateway.js';
+import { renderTasks } from './renderer';
+import { createTask } from './tasksGateway';
 
 export const onCreateTask = () => {
   const taskTitleInputElem = document.querySelector('.task-input');

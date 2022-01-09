@@ -1,5 +1,5 @@
 import './list.scss';
-import { getTasksList } from './tasksGateway.js';
+import { getTasksList } from './tasksGateway';
 
 const listElem = document.querySelector('.list');
 
